@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Divine Kanayo | Agricultural Economist & Financial Trader</title>
+  <style>
+    /* --- ROOT VARIABLES & RESET --- */
+    :root {
+      --bg-color: #0b0f19;
+      --card-bg: rgba(22, 31, 49, 0.7);
+      --border-color: rgba(255, 255, 255, 0.08);
+      --accent-green: #00e676; /* Agro/Growth */
+      --accent-blue: #00b0ff;  /* Finance/Tech */
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      --font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      font-family: var(--font-family);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* --- BACKGROUND DECORATION --- */
+    .glow-1, .glow-2 {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(120px);
+      z-index: -1;
+      opacity: 0.25;
+    }
+    .glow-1 { top: -100px; left: -100px; width: 400px; height: 400px; background: var(--accent-green); }
+    .glow-2 { top: 300px; right: -100px; width: 500px; height: 500px; background: var(--accent-blue); }
+
+    /* --- NAVIGATION --- */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(11, 15, 25, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-color);
+      z-index: 1000;
+    }
+
+    nav {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1.2rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.3rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+    .logo span { color: var(--accent-green); }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+    }
+
+    nav a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    nav a:hover { color: var(--accent-green); }
+
+    /* --- HERO SECTION --- */
+    .hero {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 9rem 2rem 5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(0, 230, 118, 0.1);
+      border: 1px solid rgba(0, 230, 118, 0.3);
+      color: var(--accent-green);
+      padding: 0.4rem 1rem;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      line-height: 1.1;
+      margin-bottom: 1rem;
+      font-weight: 800;
+    }
+
+    .hero h1 .gradient-text {
+      background: linear-gradient(135deg, var(--accent-green), var(--accent-blue));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      max-width: 650px;
+      color: var(--text-muted);
+      font-size: 1.15rem;
+      margin-bottom: 2rem;
+    }
+
+    .cta-group {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 0.8rem 1.8rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent-green), #00b0ff);
+      color: #000;
+    }
+    .btn-primary:hover { opacity: 0.9; transform: translateY(-2px); }
+
+    .btn-secondary {
+      background: var(--card-bg);
+      color: var(--text-main);
+      border: 1px solid var(--border-color);
+    }
+    .btn-secondary:hover { border-color: var(--accent-blue); transform: translateY(-2px); }
+
+    /* --- SECTION COMMON --- */
+    section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+    }
+
+    .section-title {
+      font-size: 1.8rem;
+      margin-bottom: 2.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border-color);
+    }
+
+    /* --- DOMAINS / CARDS --- */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 2rem;
+      backdrop-filter: blur(10px);
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .card:hover {
+      border-color: rgba(255, 255, 255, 0.2);
+      transform: translateY(-4px);
+    }
+
+    .card-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1.25rem;
+    }
+
+    .tag {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-color);
+      padding: 0.25rem 0.75rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* --- TRADING CALCULATOR TOOL --- */
+    .calc-box {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 2rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .calc-field {
+      margin-bottom: 1.25rem;
+    }
+
+    .calc-field label {
+      display: block;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .calc-field input, .calc-field select {
+      width: 100%;
+      padding: 0.75rem;
+      border-radius: 6px;
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      font-size: 1rem;
+      outline: none;
+    }
+
+    .calc-result {
+      background: rgba(0, 230, 118, 0.05);
+      border: 1px dashed var(--accent-green);
+      padding: 1rem;
+      border-radius: 8px;
+      text-align: center;
+      margin-top: 1.5rem;
+    }
+
+    .calc-result strong {
+      color: var(--accent-green);
+      font-size: 1.2rem;
+    }
+
+    /* --- CONTACT & FOOTER --- */
+    .contact-card {
+      text-align: center;
+      background: linear-gradient(180deg, var(--card-bg), rgba(11, 15, 25, 0.9));
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 3.5rem 2rem;
+    }
+
+    footer {
+      border-top: 1px solid var(--border-color);
+      text-align: center;
+      padding: 2rem;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 768px) {
+      nav ul { display: none; } /* Simplified for quick responsive view */
+      .hero { padding-top: 7rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="glow-1"></div>
+  <div class="glow-2"></div>
+
+  <!-- NAVIGATION -->
+  <header>
+    <nav>
+      <div class="logo">Divine<span>Kanayo</span></div>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#focus">Focus Areas</a></li>
+        <li><a href="#tool">Trading Tool</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero" id="about">
+    <div class="badge">🌱 AgEcon Student & 📈 Volatility Indices Trader</div>
+    <h1>Merging <span class="gradient-text">Agricultural Economics</span> with Financial Markets.</h1>
+    <p>Hi, I'm <strong>Divine Kanayo</strong>. I analyze economic systems in agriculture while actively trading Deriv synthetic market instruments, technical price action, and Volatility Indices.</p>
+    <div class="cta-group">
+      <a href="mailto:divinekanayo13@gmail.com" class="btn btn-primary">Get In Touch</a>
+      <a href="#tool" class="btn btn-secondary">Try Risk Calculator</a>
+    </div>
+  </section>
+
+  <!-- DUAL FOCUS AREAS -->
+  <section id="focus">
+    <h2 class="section-title">Core Disciplines</h2>
+    <div class="grid-2">
+      
+      <!-- Card 1 -->
+      <div class="card">
+        <div class="card-icon">🌾</div>
+        <h3>Agricultural Economics</h3>
+        <p>Studying agricultural supply chains, resource management, market pricing models, and economic policy to optimize food security and rural enterprise production.</p>
+        <div class="tag-list">
+          <span class="tag">Farm Management</span>
+          <span class="tag">Microeconomics</span>
+          <span class="tag">Agribusiness</span>
+          <span class="tag">Resource Allocation</span>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="card">
+        <div class="card-icon">📊</div>
+        <h3>Deriv & Volatility Trading</h3>
+        <p>Specializing in continuous 24/7 synthetic indices. Analyzing price wicks, market momentum, order blocks, and risk management across Volatility (V25, V75, V100) markets.</p>
+        <div class="tag-list">
+          <span class="tag">Volatility Indices</span>
+          <span class="tag">Price Action</span>
+          <span class="tag">Risk Management</span>
+          <span class="tag">Technical Analysis</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- INTERACTIVE TRADING TOOL -->
+  <section id="tool">
+    <h2 class="section-title">Interactive Risk Management Tool</h2>
+    <div class="calc-box">
+      <h3 style="margin-bottom: 0.5rem; text-align: center;">VIX Position Risk Sizer</h3>
+      <p style="color: var(--text-muted); font-size: 0.85rem; text-align: center; margin-bottom: 1.5rem;">Calculate recommended lot sizing based on account risk rules.</p>
+      
+      <div class="calc-field">
+        <label for="balance">Account Balance ($)</label>
+        <input type="number" id="balance" value="100" placeholder="e.g. 100">
+      </div>
+
+      <div class="calc-field">
+        <label for="risk">Risk Percentage (%)</label>
+        <input type="number" id="risk" value="2" placeholder="e.g. 2">
+      </div>
+
+      <div class="calc-field">
+        <label for="index">Instrument</label>
+        <select id="index">
+          <option value="v25">Volatility 25 Index (Min Lot: 0.50)</option>
+          <option value="v75">Volatility 75 Index (Min Lot: 0.001)</option>
+          <option value="v100">Volatility 100 Index (Min Lot: 0.20)</option>
+        </select>
+      </div>
+
+      <button class="btn btn-primary" style="width: 100%;" onclick="calculateRisk()">Calculate Safe Exposure</button>
+
+      <div class="calc-result" id="result-box">
+        Max Dollar Risk: <strong id="risk-amount">$2.00</strong>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT SECTION -->
+  <section id="contact">
+    <div class="contact-card">
+      <h2 style="font-size: 2rem; margin-bottom: 1rem;">Let's Connect & Collaborate</h2>
+      <p style="color: var(--text-muted); max-width: 500px; margin: 0 auto 2rem;">Whether you want to discuss agricultural economics, technical market analysis, or trading strategies, feel free to drop me an email.</p>
+      <a href="mailto:divinekanayo13@gmail.com" class="btn btn-primary">divinekanayo13@gmail.com</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 Divine Kanayo. All rights reserved.</p>
+  </footer>
+
+  <!-- JAVASCRIPT -->
+  <script>
+    function calculateRisk() {
+      const balance = parseFloat(document.getElementById('balance').value) || 0;
+      const risk = parseFloat(document.getElementById('risk').value) || 0;
+      
+      const maxRiskDollar = (balance * (risk / 100)).toFixed(2);
+      
+      document.getElementById('risk-amount').innerText = `$${maxRiskDollar}`;
+    }
+  </script>
+</body>
+</html>
